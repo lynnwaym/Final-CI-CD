@@ -14,7 +14,7 @@ jobs:
       - name: Fix git safe directory
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-        
+
       - name: Build check
         run: GOOS=linux GOARCH=amd64 go build -v ./...
 
@@ -55,4 +55,4 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }} 
+          labels: ${{ steps.meta.outputs.labels }}
