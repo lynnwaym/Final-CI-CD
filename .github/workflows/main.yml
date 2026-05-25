@@ -7,10 +7,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: golang:1.24.5
+    container: golang:1.25.0
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fix git safe directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+        
       - name: Build check
         run: GOOS=linux GOARCH=amd64 go build -v ./...
 
