@@ -67,6 +67,10 @@ func (s ParcelService) PrintClientParcels(client int) error {
 	return nil
 }
 
+func (s ParcelService) ChangeAddress(number int, address string) error {
+	return s.store.SetAddress(number, address)
+}
+
 func (s ParcelService) NextStatus(number int) error {
 	parcel, err := s.store.Get(number)
 	if err != nil {
@@ -86,10 +90,6 @@ func (s ParcelService) NextStatus(number int) error {
 	fmt.Printf("У посылки № %d новый статус: %s\n", number, nextStatus)
 
 	return s.store.SetStatus(number, nextStatus)
-}
-
-func (s ParcelService) ChangeAddress(number int, address string) error {
-	return s.store.SetAddress(number, address)
 }
 
 func (s ParcelService) Delete(number int) error {
